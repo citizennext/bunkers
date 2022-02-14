@@ -1,0 +1,3 @@
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || ''
+const ADMIN_SECRET = process.env.NEXT_PUBLIC_HASURA_ADMIN_SECRET || ''
+export { BACKEND_URL, ADMIN_SECRET }
