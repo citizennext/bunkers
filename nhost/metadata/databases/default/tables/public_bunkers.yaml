@@ -1,0 +1,23 @@
+table:
+  name: bunkers
+  schema: public
+computed_fields:
+- definition:
+    function:
+      name: coordinates
+      schema: public
+  name: coordinates
+select_permissions:
+- permission:
+    allow_aggregations: true
+    columns:
+    - lat
+    - lng
+    - id
+    - address
+    - city
+    - district
+    computed_fields:
+    - coordinates
+    filter: {}
+  role: public

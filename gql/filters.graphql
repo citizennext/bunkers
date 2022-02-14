@@ -1,0 +1,9 @@
+query getFilters($where: bunkers_bool_exp!) {
+  districts: bunkers(distinct_on: district, where: { district: { _is_null: false } }) {
+    district
+  }
+  cities: bunkers(distinct_on: city, where: $where) {
+    city
+    district
+  }
+}

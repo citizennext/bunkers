@@ -1,0 +1,51 @@
+{
+  "name": "nextjs-apollo",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "codegen": "graphql-codegen --config codegen.yaml --errors-only"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.5.6",
+    "@babel/core": "^7.16.7",
+    "@headlessui/react": "^1.4.3",
+    "@next/bundle-analyzer": "^12.0.10",
+    "@nhost/nhost-js": "^0.3.3",
+    "@nhost/react-apollo": "^2.0.6",
+    "@nhost/react-auth": "^2.0.3",
+    "@reach/dialog": "^0.16.2",
+    "@types/leaflet": "^1.7.9",
+    "@types/react-leaflet-markercluster": "^3.0.0",
+    "graphql": "^15.6.1",
+    "graphql-tag": "^2.12.6",
+    "leaflet": "^1.7.1",
+    "next": "^12.0.7",
+    "next-use-contextual-routing": "^2.1.0",
+    "rc-drawer": "^4.4.3",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-leaflet": "^3.2.5",
+    "react-leaflet-markercluster": "^3.0.0-rc1",
+    "react-select": "^5.2.2",
+    "sass": "^1.49.7"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^2.2.1",
+    "@graphql-codegen/introspection": "^2.1.0",
+    "@graphql-codegen/typescript": "^2.2.4",
+    "@graphql-codegen/typescript-operations": "^2.1.8",
+    "@graphql-codegen/typescript-react-apollo": "^3.1.6",
+    "@types/react": "17.0.31",
+    "autoprefixer": "^10.4.2",
+    "eslint": "7.32.0",
+    "eslint-config-next": "11.1.2",
+    "express": "^4.17.1",
+    "postcss": "^8.4.6",
+    "tailwindcss": "^3.0.22",
+    "typescript": "^4.5.4"
+  }
+}

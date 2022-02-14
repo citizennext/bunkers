@@ -1,0 +1,14 @@
+.nhost
+.next
+web/node_modules
+node_modules
+functions/node_modules
+node_modules
+.idea
+.cache
+.vscode
+build
+.env
+.env.development
+.env.production
+yarn-error.log
