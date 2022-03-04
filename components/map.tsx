@@ -41,7 +41,6 @@ export const MarkerCustomIcon = Leaflet.divIcon({
 })
 function Map() {
   const router = useRouter()
-  let cancelButtonRef = useRef(null)
 
   const [selectedBunkerId, setSelectedBunkerId] = useState(0)
   const [lat, setLat] = useState(45.947808)
@@ -117,7 +116,7 @@ function Map() {
             {bunkers?.map((item) => (
               <Marker
                 key={item.id}
-                position={item.coordinates}
+                position={[item.lat, item.lng]}
                 icon={MarkerCustomIcon}
                 eventHandlers={{
                   click: () => setSelectedBunkerId(item.id),

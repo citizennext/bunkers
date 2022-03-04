@@ -15,7 +15,8 @@ export type Scalars = {
   Float: number;
   citext: any;
   float8: any;
-  json: any;
+  jsonb: any;
+  timestamp: any;
   timestamptz: any;
   uuid: any;
 };
@@ -152,7 +153,7 @@ export type AuthProviderRequests_Mutation_Response = {
   returning: Array<AuthProviderRequests>;
 };
 
-/** on conflict condition type for table "auth.provider_requests" */
+/** on_conflict condition type for table "auth.provider_requests" */
 export type AuthProviderRequests_On_Conflict = {
   constraint: AuthProviderRequests_Constraint;
   update_columns?: Array<AuthProviderRequests_Update_Column>;
@@ -289,11 +290,11 @@ export type AuthProviders_Mutation_Response = {
 /** input type for inserting object relation for remote table "auth.providers" */
 export type AuthProviders_Obj_Rel_Insert_Input = {
   data: AuthProviders_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<AuthProviders_On_Conflict>;
 };
 
-/** on conflict condition type for table "auth.providers" */
+/** on_conflict condition type for table "auth.providers" */
 export type AuthProviders_On_Conflict = {
   constraint: AuthProviders_Constraint;
   update_columns?: Array<AuthProviders_Update_Column>;
@@ -371,7 +372,7 @@ export type AuthRefreshTokens_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "auth.refresh_tokens" */
 export type AuthRefreshTokens_Arr_Rel_Insert_Input = {
   data: Array<AuthRefreshTokens_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<AuthRefreshTokens_On_Conflict>;
 };
 
@@ -445,7 +446,7 @@ export type AuthRefreshTokens_Mutation_Response = {
   returning: Array<AuthRefreshTokens>;
 };
 
-/** on conflict condition type for table "auth.refresh_tokens" */
+/** on_conflict condition type for table "auth.refresh_tokens" */
 export type AuthRefreshTokens_On_Conflict = {
   constraint: AuthRefreshTokens_Constraint;
   update_columns?: Array<AuthRefreshTokens_Update_Column>;
@@ -621,11 +622,11 @@ export type AuthRoles_Mutation_Response = {
 /** input type for inserting object relation for remote table "auth.roles" */
 export type AuthRoles_Obj_Rel_Insert_Input = {
   data: AuthRoles_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<AuthRoles_On_Conflict>;
 };
 
-/** on conflict condition type for table "auth.roles" */
+/** on_conflict condition type for table "auth.roles" */
 export type AuthRoles_On_Conflict = {
   constraint: AuthRoles_Constraint;
   update_columns?: Array<AuthRoles_Update_Column>;
@@ -710,7 +711,7 @@ export type AuthUserProviders_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "auth.user_providers" */
 export type AuthUserProviders_Arr_Rel_Insert_Input = {
   data: Array<AuthUserProviders_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<AuthUserProviders_On_Conflict>;
 };
 
@@ -814,7 +815,7 @@ export type AuthUserProviders_Mutation_Response = {
   returning: Array<AuthUserProviders>;
 };
 
-/** on conflict condition type for table "auth.user_providers" */
+/** on_conflict condition type for table "auth.user_providers" */
 export type AuthUserProviders_On_Conflict = {
   constraint: AuthUserProviders_Constraint;
   update_columns?: Array<AuthUserProviders_Update_Column>;
@@ -937,7 +938,7 @@ export type AuthUserRoles_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "auth.user_roles" */
 export type AuthUserRoles_Arr_Rel_Insert_Input = {
   data: Array<AuthUserRoles_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<AuthUserRoles_On_Conflict>;
 };
 
@@ -1015,7 +1016,7 @@ export type AuthUserRoles_Mutation_Response = {
   returning: Array<AuthUserRoles>;
 };
 
-/** on conflict condition type for table "auth.user_roles" */
+/** on_conflict condition type for table "auth.user_roles" */
 export type AuthUserRoles_On_Conflict = {
   constraint: AuthUserRoles_Constraint;
   update_columns?: Array<AuthUserRoles_Update_Column>;
@@ -1068,6 +1069,204 @@ export enum AuthUserRoles_Update_Column {
   /** column name */
   UserId = 'userId'
 }
+
+/** columns and relationships of "auth.migrations" */
+export type Auth_Migrations = {
+  __typename?: 'auth_migrations';
+  executed_at?: Maybe<Scalars['timestamp']>;
+  hash: Scalars['String'];
+  id: Scalars['Int'];
+  name: Scalars['String'];
+};
+
+/** aggregated selection of "auth.migrations" */
+export type Auth_Migrations_Aggregate = {
+  __typename?: 'auth_migrations_aggregate';
+  aggregate?: Maybe<Auth_Migrations_Aggregate_Fields>;
+  nodes: Array<Auth_Migrations>;
+};
+
+/** aggregate fields of "auth.migrations" */
+export type Auth_Migrations_Aggregate_Fields = {
+  __typename?: 'auth_migrations_aggregate_fields';
+  avg?: Maybe<Auth_Migrations_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<Auth_Migrations_Max_Fields>;
+  min?: Maybe<Auth_Migrations_Min_Fields>;
+  stddev?: Maybe<Auth_Migrations_Stddev_Fields>;
+  stddev_pop?: Maybe<Auth_Migrations_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Auth_Migrations_Stddev_Samp_Fields>;
+  sum?: Maybe<Auth_Migrations_Sum_Fields>;
+  var_pop?: Maybe<Auth_Migrations_Var_Pop_Fields>;
+  var_samp?: Maybe<Auth_Migrations_Var_Samp_Fields>;
+  variance?: Maybe<Auth_Migrations_Variance_Fields>;
+};
+
+
+/** aggregate fields of "auth.migrations" */
+export type Auth_Migrations_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Auth_Migrations_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** aggregate avg on columns */
+export type Auth_Migrations_Avg_Fields = {
+  __typename?: 'auth_migrations_avg_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** Boolean expression to filter rows from the table "auth.migrations". All fields are combined with a logical 'AND'. */
+export type Auth_Migrations_Bool_Exp = {
+  _and?: InputMaybe<Array<Auth_Migrations_Bool_Exp>>;
+  _not?: InputMaybe<Auth_Migrations_Bool_Exp>;
+  _or?: InputMaybe<Array<Auth_Migrations_Bool_Exp>>;
+  executed_at?: InputMaybe<Timestamp_Comparison_Exp>;
+  hash?: InputMaybe<String_Comparison_Exp>;
+  id?: InputMaybe<Int_Comparison_Exp>;
+  name?: InputMaybe<String_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "auth.migrations" */
+export enum Auth_Migrations_Constraint {
+  /** unique or primary key constraint */
+  MigrationsNameKey = 'migrations_name_key',
+  /** unique or primary key constraint */
+  MigrationsPkey = 'migrations_pkey'
+}
+
+/** input type for incrementing numeric columns in table "auth.migrations" */
+export type Auth_Migrations_Inc_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "auth.migrations" */
+export type Auth_Migrations_Insert_Input = {
+  executed_at?: InputMaybe<Scalars['timestamp']>;
+  hash?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
+/** aggregate max on columns */
+export type Auth_Migrations_Max_Fields = {
+  __typename?: 'auth_migrations_max_fields';
+  executed_at?: Maybe<Scalars['timestamp']>;
+  hash?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+};
+
+/** aggregate min on columns */
+export type Auth_Migrations_Min_Fields = {
+  __typename?: 'auth_migrations_min_fields';
+  executed_at?: Maybe<Scalars['timestamp']>;
+  hash?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+};
+
+/** response of any mutation on the table "auth.migrations" */
+export type Auth_Migrations_Mutation_Response = {
+  __typename?: 'auth_migrations_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Auth_Migrations>;
+};
+
+/** on_conflict condition type for table "auth.migrations" */
+export type Auth_Migrations_On_Conflict = {
+  constraint: Auth_Migrations_Constraint;
+  update_columns?: Array<Auth_Migrations_Update_Column>;
+  where?: InputMaybe<Auth_Migrations_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "auth.migrations". */
+export type Auth_Migrations_Order_By = {
+  executed_at?: InputMaybe<Order_By>;
+  hash?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  name?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: auth_migrations */
+export type Auth_Migrations_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** select columns of table "auth.migrations" */
+export enum Auth_Migrations_Select_Column {
+  /** column name */
+  ExecutedAt = 'executed_at',
+  /** column name */
+  Hash = 'hash',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name'
+}
+
+/** input type for updating data in table "auth.migrations" */
+export type Auth_Migrations_Set_Input = {
+  executed_at?: InputMaybe<Scalars['timestamp']>;
+  hash?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+  name?: InputMaybe<Scalars['String']>;
+};
+
+/** aggregate stddev on columns */
+export type Auth_Migrations_Stddev_Fields = {
+  __typename?: 'auth_migrations_stddev_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Auth_Migrations_Stddev_Pop_Fields = {
+  __typename?: 'auth_migrations_stddev_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Auth_Migrations_Stddev_Samp_Fields = {
+  __typename?: 'auth_migrations_stddev_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate sum on columns */
+export type Auth_Migrations_Sum_Fields = {
+  __typename?: 'auth_migrations_sum_fields';
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** update columns of table "auth.migrations" */
+export enum Auth_Migrations_Update_Column {
+  /** column name */
+  ExecutedAt = 'executed_at',
+  /** column name */
+  Hash = 'hash',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name'
+}
+
+/** aggregate var_pop on columns */
+export type Auth_Migrations_Var_Pop_Fields = {
+  __typename?: 'auth_migrations_var_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate var_samp on columns */
+export type Auth_Migrations_Var_Samp_Fields = {
+  __typename?: 'auth_migrations_var_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate variance on columns */
+export type Auth_Migrations_Variance_Fields = {
+  __typename?: 'auth_migrations_variance_fields';
+  id?: Maybe<Scalars['Float']>;
+};
 
 /** columns and relationships of "storage.buckets" */
 export type Buckets = {
@@ -1222,11 +1421,11 @@ export type Buckets_Mutation_Response = {
 /** input type for inserting object relation for remote table "storage.buckets" */
 export type Buckets_Obj_Rel_Insert_Input = {
   data: Buckets_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Buckets_On_Conflict>;
 };
 
-/** on conflict condition type for table "storage.buckets" */
+/** on_conflict condition type for table "storage.buckets" */
 export type Buckets_On_Conflict = {
   constraint: Buckets_Constraint;
   update_columns?: Array<Buckets_Update_Column>;
@@ -1364,18 +1563,10 @@ export type Bunkers = {
   __typename?: 'bunkers';
   address?: Maybe<Scalars['String']>;
   city?: Maybe<Scalars['String']>;
-  /** A computed field, executes function "coordinates" */
-  coordinates?: Maybe<Scalars['json']>;
   district?: Maybe<Scalars['String']>;
   id: Scalars['Int'];
   lat: Scalars['float8'];
   lng: Scalars['float8'];
-};
-
-
-/** columns and relationships of "bunkers" */
-export type BunkersCoordinatesArgs = {
-  path?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregated selection of "bunkers" */
@@ -1423,7 +1614,6 @@ export type Bunkers_Bool_Exp = {
   _or?: InputMaybe<Array<Bunkers_Bool_Exp>>;
   address?: InputMaybe<String_Comparison_Exp>;
   city?: InputMaybe<String_Comparison_Exp>;
-  coordinates?: InputMaybe<Json_Comparison_Exp>;
   district?: InputMaybe<String_Comparison_Exp>;
   id?: InputMaybe<Int_Comparison_Exp>;
   lat?: InputMaybe<Float8_Comparison_Exp>;
@@ -1484,7 +1674,7 @@ export type Bunkers_Mutation_Response = {
   returning: Array<Bunkers>;
 };
 
-/** on conflict condition type for table "bunkers" */
+/** on_conflict condition type for table "bunkers" */
 export type Bunkers_On_Conflict = {
   constraint: Bunkers_Constraint;
   update_columns?: Array<Bunkers_Update_Column>;
@@ -1495,7 +1685,6 @@ export type Bunkers_On_Conflict = {
 export type Bunkers_Order_By = {
   address?: InputMaybe<Order_By>;
   city?: InputMaybe<Order_By>;
-  coordinates?: InputMaybe<Order_By>;
   district?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   lat?: InputMaybe<Order_By>;
@@ -1703,7 +1892,7 @@ export type Files_Aggregate_Order_By = {
 /** input type for inserting array relation for remote table "storage.files" */
 export type Files_Arr_Rel_Insert_Input = {
   data: Array<Files_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Files_On_Conflict>;
 };
 
@@ -1825,7 +2014,7 @@ export type Files_Mutation_Response = {
   returning: Array<Files>;
 };
 
-/** on conflict condition type for table "storage.files" */
+/** on_conflict condition type for table "storage.files" */
 export type Files_On_Conflict = {
   constraint: Files_Constraint;
   update_columns?: Array<Files_Update_Column>;
@@ -2004,17 +2193,27 @@ export type Float8_Comparison_Exp = {
   _nin?: InputMaybe<Array<Scalars['float8']>>;
 };
 
-/** Boolean expression to compare columns of type "json". All fields are combined with logical 'AND'. */
-export type Json_Comparison_Exp = {
-  _eq?: InputMaybe<Scalars['json']>;
-  _gt?: InputMaybe<Scalars['json']>;
-  _gte?: InputMaybe<Scalars['json']>;
-  _in?: InputMaybe<Array<Scalars['json']>>;
+/** Boolean expression to compare columns of type "jsonb". All fields are combined with logical 'AND'. */
+export type Jsonb_Comparison_Exp = {
+  /** is the column contained in the given json value */
+  _contained_in?: InputMaybe<Scalars['jsonb']>;
+  /** does the column contain the given json value at the top level */
+  _contains?: InputMaybe<Scalars['jsonb']>;
+  _eq?: InputMaybe<Scalars['jsonb']>;
+  _gt?: InputMaybe<Scalars['jsonb']>;
+  _gte?: InputMaybe<Scalars['jsonb']>;
+  /** does the string exist as a top-level key in the column */
+  _has_key?: InputMaybe<Scalars['String']>;
+  /** do all of these strings exist as top-level keys in the column */
+  _has_keys_all?: InputMaybe<Array<Scalars['String']>>;
+  /** do any of these strings exist as top-level keys in the column */
+  _has_keys_any?: InputMaybe<Array<Scalars['String']>>;
+  _in?: InputMaybe<Array<Scalars['jsonb']>>;
   _is_null?: InputMaybe<Scalars['Boolean']>;
-  _lt?: InputMaybe<Scalars['json']>;
-  _lte?: InputMaybe<Scalars['json']>;
-  _neq?: InputMaybe<Scalars['json']>;
-  _nin?: InputMaybe<Array<Scalars['json']>>;
+  _lt?: InputMaybe<Scalars['jsonb']>;
+  _lte?: InputMaybe<Scalars['jsonb']>;
+  _neq?: InputMaybe<Scalars['jsonb']>;
+  _nin?: InputMaybe<Array<Scalars['jsonb']>>;
 };
 
 /** mutation root */
@@ -2056,10 +2255,22 @@ export type Mutation_Root = {
   deleteUser?: Maybe<Users>;
   /** delete data from the table: "auth.users" */
   deleteUsers?: Maybe<Users_Mutation_Response>;
+  /** delete data from the table: "auth.migrations" */
+  delete_auth_migrations?: Maybe<Auth_Migrations_Mutation_Response>;
+  /** delete single row from the table: "auth.migrations" */
+  delete_auth_migrations_by_pk?: Maybe<Auth_Migrations>;
   /** delete data from the table: "bunkers" */
   delete_bunkers?: Maybe<Bunkers_Mutation_Response>;
   /** delete single row from the table: "bunkers" */
   delete_bunkers_by_pk?: Maybe<Bunkers>;
+  /** delete data from the table: "projects" */
+  delete_projects?: Maybe<Projects_Mutation_Response>;
+  /** delete single row from the table: "projects" */
+  delete_projects_by_pk?: Maybe<Projects>;
+  /** delete data from the table: "user_project" */
+  delete_user_project?: Maybe<User_Project_Mutation_Response>;
+  /** delete single row from the table: "user_project" */
+  delete_user_project_by_pk?: Maybe<User_Project>;
   /** insert a single row into the table: "auth.providers" */
   insertAuthProvider?: Maybe<AuthProviders>;
   /** insert a single row into the table: "auth.provider_requests" */
@@ -2096,10 +2307,22 @@ export type Mutation_Root = {
   insertUser?: Maybe<Users>;
   /** insert data into the table: "auth.users" */
   insertUsers?: Maybe<Users_Mutation_Response>;
+  /** insert data into the table: "auth.migrations" */
+  insert_auth_migrations?: Maybe<Auth_Migrations_Mutation_Response>;
+  /** insert a single row into the table: "auth.migrations" */
+  insert_auth_migrations_one?: Maybe<Auth_Migrations>;
   /** insert data into the table: "bunkers" */
   insert_bunkers?: Maybe<Bunkers_Mutation_Response>;
   /** insert a single row into the table: "bunkers" */
   insert_bunkers_one?: Maybe<Bunkers>;
+  /** insert data into the table: "projects" */
+  insert_projects?: Maybe<Projects_Mutation_Response>;
+  /** insert a single row into the table: "projects" */
+  insert_projects_one?: Maybe<Projects>;
+  /** insert data into the table: "user_project" */
+  insert_user_project?: Maybe<User_Project_Mutation_Response>;
+  /** insert a single row into the table: "user_project" */
+  insert_user_project_one?: Maybe<User_Project>;
   /** update single row of the table: "auth.providers" */
   updateAuthProvider?: Maybe<AuthProviders>;
   /** update single row of the table: "auth.provider_requests" */
@@ -2136,10 +2359,22 @@ export type Mutation_Root = {
   updateUser?: Maybe<Users>;
   /** update data of the table: "auth.users" */
   updateUsers?: Maybe<Users_Mutation_Response>;
+  /** update data of the table: "auth.migrations" */
+  update_auth_migrations?: Maybe<Auth_Migrations_Mutation_Response>;
+  /** update single row of the table: "auth.migrations" */
+  update_auth_migrations_by_pk?: Maybe<Auth_Migrations>;
   /** update data of the table: "bunkers" */
   update_bunkers?: Maybe<Bunkers_Mutation_Response>;
   /** update single row of the table: "bunkers" */
   update_bunkers_by_pk?: Maybe<Bunkers>;
+  /** update data of the table: "projects" */
+  update_projects?: Maybe<Projects_Mutation_Response>;
+  /** update single row of the table: "projects" */
+  update_projects_by_pk?: Maybe<Projects>;
+  /** update data of the table: "user_project" */
+  update_user_project?: Maybe<User_Project_Mutation_Response>;
+  /** update single row of the table: "user_project" */
+  update_user_project_by_pk?: Maybe<User_Project>;
 };
 
 
@@ -2252,6 +2487,18 @@ export type Mutation_RootDeleteUsersArgs = {
 
 
 /** mutation root */
+export type Mutation_RootDelete_Auth_MigrationsArgs = {
+  where: Auth_Migrations_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Auth_Migrations_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
+/** mutation root */
 export type Mutation_RootDelete_BunkersArgs = {
   where: Bunkers_Bool_Exp;
 };
@@ -2260,6 +2507,31 @@ export type Mutation_RootDelete_BunkersArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Bunkers_By_PkArgs = {
   id: Scalars['Int'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_ProjectsArgs = {
+  where: Projects_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Projects_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_User_ProjectArgs = {
+  where: User_Project_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_User_Project_By_PkArgs = {
+  project_id: Scalars['uuid'];
+  user_id: Scalars['uuid'];
 };
 
 
@@ -2390,6 +2662,20 @@ export type Mutation_RootInsertUsersArgs = {
 
 
 /** mutation root */
+export type Mutation_RootInsert_Auth_MigrationsArgs = {
+  objects: Array<Auth_Migrations_Insert_Input>;
+  on_conflict?: InputMaybe<Auth_Migrations_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Auth_Migrations_OneArgs = {
+  object: Auth_Migrations_Insert_Input;
+  on_conflict?: InputMaybe<Auth_Migrations_On_Conflict>;
+};
+
+
+/** mutation root */
 export type Mutation_RootInsert_BunkersArgs = {
   objects: Array<Bunkers_Insert_Input>;
   on_conflict?: InputMaybe<Bunkers_On_Conflict>;
@@ -2400,6 +2686,34 @@ export type Mutation_RootInsert_BunkersArgs = {
 export type Mutation_RootInsert_Bunkers_OneArgs = {
   object: Bunkers_Insert_Input;
   on_conflict?: InputMaybe<Bunkers_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_ProjectsArgs = {
+  objects: Array<Projects_Insert_Input>;
+  on_conflict?: InputMaybe<Projects_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Projects_OneArgs = {
+  object: Projects_Insert_Input;
+  on_conflict?: InputMaybe<Projects_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_User_ProjectArgs = {
+  objects: Array<User_Project_Insert_Input>;
+  on_conflict?: InputMaybe<User_Project_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_User_Project_OneArgs = {
+  object: User_Project_Insert_Input;
+  on_conflict?: InputMaybe<User_Project_On_Conflict>;
 };
 
 
@@ -2521,6 +2835,11 @@ export type Mutation_RootUpdateFilesArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdateUserArgs = {
+  _append?: InputMaybe<Users_Append_Input>;
+  _delete_at_path?: InputMaybe<Users_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Users_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Users_Delete_Key_Input>;
+  _prepend?: InputMaybe<Users_Prepend_Input>;
   _set?: InputMaybe<Users_Set_Input>;
   pk_columns: Users_Pk_Columns_Input;
 };
@@ -2528,8 +2847,29 @@ export type Mutation_RootUpdateUserArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdateUsersArgs = {
+  _append?: InputMaybe<Users_Append_Input>;
+  _delete_at_path?: InputMaybe<Users_Delete_At_Path_Input>;
+  _delete_elem?: InputMaybe<Users_Delete_Elem_Input>;
+  _delete_key?: InputMaybe<Users_Delete_Key_Input>;
+  _prepend?: InputMaybe<Users_Prepend_Input>;
   _set?: InputMaybe<Users_Set_Input>;
   where: Users_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Auth_MigrationsArgs = {
+  _inc?: InputMaybe<Auth_Migrations_Inc_Input>;
+  _set?: InputMaybe<Auth_Migrations_Set_Input>;
+  where: Auth_Migrations_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Auth_Migrations_By_PkArgs = {
+  _inc?: InputMaybe<Auth_Migrations_Inc_Input>;
+  _set?: InputMaybe<Auth_Migrations_Set_Input>;
+  pk_columns: Auth_Migrations_Pk_Columns_Input;
 };
 
 
@@ -2548,6 +2888,34 @@ export type Mutation_RootUpdate_Bunkers_By_PkArgs = {
   pk_columns: Bunkers_Pk_Columns_Input;
 };
 
+
+/** mutation root */
+export type Mutation_RootUpdate_ProjectsArgs = {
+  _set?: InputMaybe<Projects_Set_Input>;
+  where: Projects_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Projects_By_PkArgs = {
+  _set?: InputMaybe<Projects_Set_Input>;
+  pk_columns: Projects_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_User_ProjectArgs = {
+  _set?: InputMaybe<User_Project_Set_Input>;
+  where: User_Project_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_User_Project_By_PkArgs = {
+  _set?: InputMaybe<User_Project_Set_Input>;
+  pk_columns: User_Project_Pk_Columns_Input;
+};
+
 /** column ordering options */
 export enum Order_By {
   /** in ascending order, nulls last */
@@ -2562,6 +2930,241 @@ export enum Order_By {
   DescNullsFirst = 'desc_nulls_first',
   /** in descending order, nulls last */
   DescNullsLast = 'desc_nulls_last'
+}
+
+/** columns and relationships of "projects" */
+export type Projects = {
+  __typename?: 'projects';
+  created_at: Scalars['timestamptz'];
+  id: Scalars['uuid'];
+  name: Scalars['String'];
+  slug: Scalars['String'];
+  stripeCancelAtPeriodEnd: Scalars['Boolean'];
+  stripeCurrentPeriodEnd?: Maybe<Scalars['timestamptz']>;
+  stripeCustomerId?: Maybe<Scalars['String']>;
+  stripePriceId?: Maybe<Scalars['String']>;
+  stripeSubscriptionId?: Maybe<Scalars['String']>;
+  updated_at: Scalars['timestamptz'];
+  /** An array relationship */
+  user_projects: Array<User_Project>;
+  /** An aggregate relationship */
+  user_projects_aggregate: User_Project_Aggregate;
+};
+
+
+/** columns and relationships of "projects" */
+export type ProjectsUser_ProjectsArgs = {
+  distinct_on?: InputMaybe<Array<User_Project_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<User_Project_Order_By>>;
+  where?: InputMaybe<User_Project_Bool_Exp>;
+};
+
+
+/** columns and relationships of "projects" */
+export type ProjectsUser_Projects_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<User_Project_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<User_Project_Order_By>>;
+  where?: InputMaybe<User_Project_Bool_Exp>;
+};
+
+/** aggregated selection of "projects" */
+export type Projects_Aggregate = {
+  __typename?: 'projects_aggregate';
+  aggregate?: Maybe<Projects_Aggregate_Fields>;
+  nodes: Array<Projects>;
+};
+
+/** aggregate fields of "projects" */
+export type Projects_Aggregate_Fields = {
+  __typename?: 'projects_aggregate_fields';
+  count: Scalars['Int'];
+  max?: Maybe<Projects_Max_Fields>;
+  min?: Maybe<Projects_Min_Fields>;
+};
+
+
+/** aggregate fields of "projects" */
+export type Projects_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Projects_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** Boolean expression to filter rows from the table "projects". All fields are combined with a logical 'AND'. */
+export type Projects_Bool_Exp = {
+  _and?: InputMaybe<Array<Projects_Bool_Exp>>;
+  _not?: InputMaybe<Projects_Bool_Exp>;
+  _or?: InputMaybe<Array<Projects_Bool_Exp>>;
+  created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  name?: InputMaybe<String_Comparison_Exp>;
+  slug?: InputMaybe<String_Comparison_Exp>;
+  stripeCancelAtPeriodEnd?: InputMaybe<Boolean_Comparison_Exp>;
+  stripeCurrentPeriodEnd?: InputMaybe<Timestamptz_Comparison_Exp>;
+  stripeCustomerId?: InputMaybe<String_Comparison_Exp>;
+  stripePriceId?: InputMaybe<String_Comparison_Exp>;
+  stripeSubscriptionId?: InputMaybe<String_Comparison_Exp>;
+  updated_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+  user_projects?: InputMaybe<User_Project_Bool_Exp>;
+};
+
+/** unique or primary key constraints on table "projects" */
+export enum Projects_Constraint {
+  /** unique or primary key constraint */
+  ProjectsPkey = 'projects_pkey',
+  /** unique or primary key constraint */
+  ProjectsSlugKey = 'projects_slug_key'
+}
+
+/** input type for inserting data into table "projects" */
+export type Projects_Insert_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  name?: InputMaybe<Scalars['String']>;
+  slug?: InputMaybe<Scalars['String']>;
+  stripeCancelAtPeriodEnd?: InputMaybe<Scalars['Boolean']>;
+  stripeCurrentPeriodEnd?: InputMaybe<Scalars['timestamptz']>;
+  stripeCustomerId?: InputMaybe<Scalars['String']>;
+  stripePriceId?: InputMaybe<Scalars['String']>;
+  stripeSubscriptionId?: InputMaybe<Scalars['String']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
+  user_projects?: InputMaybe<User_Project_Arr_Rel_Insert_Input>;
+};
+
+/** aggregate max on columns */
+export type Projects_Max_Fields = {
+  __typename?: 'projects_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  name?: Maybe<Scalars['String']>;
+  slug?: Maybe<Scalars['String']>;
+  stripeCurrentPeriodEnd?: Maybe<Scalars['timestamptz']>;
+  stripeCustomerId?: Maybe<Scalars['String']>;
+  stripePriceId?: Maybe<Scalars['String']>;
+  stripeSubscriptionId?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** aggregate min on columns */
+export type Projects_Min_Fields = {
+  __typename?: 'projects_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  name?: Maybe<Scalars['String']>;
+  slug?: Maybe<Scalars['String']>;
+  stripeCurrentPeriodEnd?: Maybe<Scalars['timestamptz']>;
+  stripeCustomerId?: Maybe<Scalars['String']>;
+  stripePriceId?: Maybe<Scalars['String']>;
+  stripeSubscriptionId?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['timestamptz']>;
+};
+
+/** response of any mutation on the table "projects" */
+export type Projects_Mutation_Response = {
+  __typename?: 'projects_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Projects>;
+};
+
+/** input type for inserting object relation for remote table "projects" */
+export type Projects_Obj_Rel_Insert_Input = {
+  data: Projects_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Projects_On_Conflict>;
+};
+
+/** on_conflict condition type for table "projects" */
+export type Projects_On_Conflict = {
+  constraint: Projects_Constraint;
+  update_columns?: Array<Projects_Update_Column>;
+  where?: InputMaybe<Projects_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "projects". */
+export type Projects_Order_By = {
+  created_at?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  name?: InputMaybe<Order_By>;
+  slug?: InputMaybe<Order_By>;
+  stripeCancelAtPeriodEnd?: InputMaybe<Order_By>;
+  stripeCurrentPeriodEnd?: InputMaybe<Order_By>;
+  stripeCustomerId?: InputMaybe<Order_By>;
+  stripePriceId?: InputMaybe<Order_By>;
+  stripeSubscriptionId?: InputMaybe<Order_By>;
+  updated_at?: InputMaybe<Order_By>;
+  user_projects_aggregate?: InputMaybe<User_Project_Aggregate_Order_By>;
+};
+
+/** primary key columns input for table: projects */
+export type Projects_Pk_Columns_Input = {
+  id: Scalars['uuid'];
+};
+
+/** select columns of table "projects" */
+export enum Projects_Select_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  Slug = 'slug',
+  /** column name */
+  StripeCancelAtPeriodEnd = 'stripeCancelAtPeriodEnd',
+  /** column name */
+  StripeCurrentPeriodEnd = 'stripeCurrentPeriodEnd',
+  /** column name */
+  StripeCustomerId = 'stripeCustomerId',
+  /** column name */
+  StripePriceId = 'stripePriceId',
+  /** column name */
+  StripeSubscriptionId = 'stripeSubscriptionId',
+  /** column name */
+  UpdatedAt = 'updated_at'
+}
+
+/** input type for updating data in table "projects" */
+export type Projects_Set_Input = {
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  name?: InputMaybe<Scalars['String']>;
+  slug?: InputMaybe<Scalars['String']>;
+  stripeCancelAtPeriodEnd?: InputMaybe<Scalars['Boolean']>;
+  stripeCurrentPeriodEnd?: InputMaybe<Scalars['timestamptz']>;
+  stripeCustomerId?: InputMaybe<Scalars['String']>;
+  stripePriceId?: InputMaybe<Scalars['String']>;
+  stripeSubscriptionId?: InputMaybe<Scalars['String']>;
+  updated_at?: InputMaybe<Scalars['timestamptz']>;
+};
+
+/** update columns of table "projects" */
+export enum Projects_Update_Column {
+  /** column name */
+  CreatedAt = 'created_at',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  Name = 'name',
+  /** column name */
+  Slug = 'slug',
+  /** column name */
+  StripeCancelAtPeriodEnd = 'stripeCancelAtPeriodEnd',
+  /** column name */
+  StripeCurrentPeriodEnd = 'stripeCurrentPeriodEnd',
+  /** column name */
+  StripeCustomerId = 'stripeCustomerId',
+  /** column name */
+  StripePriceId = 'stripePriceId',
+  /** column name */
+  StripeSubscriptionId = 'stripeSubscriptionId',
+  /** column name */
+  UpdatedAt = 'updated_at'
 }
 
 export type Query_Root = {
@@ -2602,6 +3205,12 @@ export type Query_Root = {
   authUserRoles: Array<AuthUserRoles>;
   /** fetch aggregated fields from the table: "auth.user_roles" */
   authUserRolesAggregate: AuthUserRoles_Aggregate;
+  /** fetch data from the table: "auth.migrations" */
+  auth_migrations: Array<Auth_Migrations>;
+  /** fetch aggregated fields from the table: "auth.migrations" */
+  auth_migrations_aggregate: Auth_Migrations_Aggregate;
+  /** fetch data from the table: "auth.migrations" using primary key columns */
+  auth_migrations_by_pk?: Maybe<Auth_Migrations>;
   /** fetch data from the table: "storage.buckets" using primary key columns */
   bucket?: Maybe<Buckets>;
   /** fetch data from the table: "storage.buckets" */
@@ -2620,10 +3229,22 @@ export type Query_Root = {
   files: Array<Files>;
   /** fetch aggregated fields from the table: "storage.files" */
   filesAggregate: Files_Aggregate;
+  /** fetch data from the table: "projects" */
+  projects: Array<Projects>;
+  /** fetch aggregated fields from the table: "projects" */
+  projects_aggregate: Projects_Aggregate;
+  /** fetch data from the table: "projects" using primary key columns */
+  projects_by_pk?: Maybe<Projects>;
   /** fetch data from the table: "auth.users" using primary key columns */
   user?: Maybe<Users>;
   /** fetch aggregated fields from the table: "auth.users" */
   userAggregate: Users_Aggregate;
+  /** fetch data from the table: "user_project" */
+  user_project: Array<User_Project>;
+  /** fetch aggregated fields from the table: "user_project" */
+  user_project_aggregate: User_Project_Aggregate;
+  /** fetch data from the table: "user_project" using primary key columns */
+  user_project_by_pk?: Maybe<User_Project>;
   /** fetch data from the table: "auth.users" */
   users: Array<Users>;
 };
@@ -2767,6 +3388,29 @@ export type Query_RootAuthUserRolesAggregateArgs = {
 };
 
 
+export type Query_RootAuth_MigrationsArgs = {
+  distinct_on?: InputMaybe<Array<Auth_Migrations_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Auth_Migrations_Order_By>>;
+  where?: InputMaybe<Auth_Migrations_Bool_Exp>;
+};
+
+
+export type Query_RootAuth_Migrations_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Auth_Migrations_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Auth_Migrations_Order_By>>;
+  where?: InputMaybe<Auth_Migrations_Bool_Exp>;
+};
+
+
+export type Query_RootAuth_Migrations_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
 export type Query_RootBucketArgs = {
   id: Scalars['String'];
 };
@@ -2836,6 +3480,29 @@ export type Query_RootFilesAggregateArgs = {
 };
 
 
+export type Query_RootProjectsArgs = {
+  distinct_on?: InputMaybe<Array<Projects_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Projects_Order_By>>;
+  where?: InputMaybe<Projects_Bool_Exp>;
+};
+
+
+export type Query_RootProjects_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Projects_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Projects_Order_By>>;
+  where?: InputMaybe<Projects_Bool_Exp>;
+};
+
+
+export type Query_RootProjects_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
 export type Query_RootUserArgs = {
   id: Scalars['uuid'];
 };
@@ -2847,6 +3514,30 @@ export type Query_RootUserAggregateArgs = {
   offset?: InputMaybe<Scalars['Int']>;
   order_by?: InputMaybe<Array<Users_Order_By>>;
   where?: InputMaybe<Users_Bool_Exp>;
+};
+
+
+export type Query_RootUser_ProjectArgs = {
+  distinct_on?: InputMaybe<Array<User_Project_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<User_Project_Order_By>>;
+  where?: InputMaybe<User_Project_Bool_Exp>;
+};
+
+
+export type Query_RootUser_Project_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<User_Project_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<User_Project_Order_By>>;
+  where?: InputMaybe<User_Project_Bool_Exp>;
+};
+
+
+export type Query_RootUser_Project_By_PkArgs = {
+  project_id: Scalars['uuid'];
+  user_id: Scalars['uuid'];
 };
 
 
@@ -2896,6 +3587,12 @@ export type Subscription_Root = {
   authUserRoles: Array<AuthUserRoles>;
   /** fetch aggregated fields from the table: "auth.user_roles" */
   authUserRolesAggregate: AuthUserRoles_Aggregate;
+  /** fetch data from the table: "auth.migrations" */
+  auth_migrations: Array<Auth_Migrations>;
+  /** fetch aggregated fields from the table: "auth.migrations" */
+  auth_migrations_aggregate: Auth_Migrations_Aggregate;
+  /** fetch data from the table: "auth.migrations" using primary key columns */
+  auth_migrations_by_pk?: Maybe<Auth_Migrations>;
   /** fetch data from the table: "storage.buckets" using primary key columns */
   bucket?: Maybe<Buckets>;
   /** fetch data from the table: "storage.buckets" */
@@ -2914,10 +3611,22 @@ export type Subscription_Root = {
   files: Array<Files>;
   /** fetch aggregated fields from the table: "storage.files" */
   filesAggregate: Files_Aggregate;
+  /** fetch data from the table: "projects" */
+  projects: Array<Projects>;
+  /** fetch aggregated fields from the table: "projects" */
+  projects_aggregate: Projects_Aggregate;
+  /** fetch data from the table: "projects" using primary key columns */
+  projects_by_pk?: Maybe<Projects>;
   /** fetch data from the table: "auth.users" using primary key columns */
   user?: Maybe<Users>;
   /** fetch aggregated fields from the table: "auth.users" */
   userAggregate: Users_Aggregate;
+  /** fetch data from the table: "user_project" */
+  user_project: Array<User_Project>;
+  /** fetch aggregated fields from the table: "user_project" */
+  user_project_aggregate: User_Project_Aggregate;
+  /** fetch data from the table: "user_project" using primary key columns */
+  user_project_by_pk?: Maybe<User_Project>;
   /** fetch data from the table: "auth.users" */
   users: Array<Users>;
 };
@@ -3061,6 +3770,29 @@ export type Subscription_RootAuthUserRolesAggregateArgs = {
 };
 
 
+export type Subscription_RootAuth_MigrationsArgs = {
+  distinct_on?: InputMaybe<Array<Auth_Migrations_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Auth_Migrations_Order_By>>;
+  where?: InputMaybe<Auth_Migrations_Bool_Exp>;
+};
+
+
+export type Subscription_RootAuth_Migrations_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Auth_Migrations_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Auth_Migrations_Order_By>>;
+  where?: InputMaybe<Auth_Migrations_Bool_Exp>;
+};
+
+
+export type Subscription_RootAuth_Migrations_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
 export type Subscription_RootBucketArgs = {
   id: Scalars['String'];
 };
@@ -3130,6 +3862,29 @@ export type Subscription_RootFilesAggregateArgs = {
 };
 
 
+export type Subscription_RootProjectsArgs = {
+  distinct_on?: InputMaybe<Array<Projects_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Projects_Order_By>>;
+  where?: InputMaybe<Projects_Bool_Exp>;
+};
+
+
+export type Subscription_RootProjects_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Projects_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Projects_Order_By>>;
+  where?: InputMaybe<Projects_Bool_Exp>;
+};
+
+
+export type Subscription_RootProjects_By_PkArgs = {
+  id: Scalars['uuid'];
+};
+
+
 export type Subscription_RootUserArgs = {
   id: Scalars['uuid'];
 };
@@ -3144,12 +3899,49 @@ export type Subscription_RootUserAggregateArgs = {
 };
 
 
+export type Subscription_RootUser_ProjectArgs = {
+  distinct_on?: InputMaybe<Array<User_Project_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<User_Project_Order_By>>;
+  where?: InputMaybe<User_Project_Bool_Exp>;
+};
+
+
+export type Subscription_RootUser_Project_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<User_Project_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<User_Project_Order_By>>;
+  where?: InputMaybe<User_Project_Bool_Exp>;
+};
+
+
+export type Subscription_RootUser_Project_By_PkArgs = {
+  project_id: Scalars['uuid'];
+  user_id: Scalars['uuid'];
+};
+
+
 export type Subscription_RootUsersArgs = {
   distinct_on?: InputMaybe<Array<Users_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
   order_by?: InputMaybe<Array<Users_Order_By>>;
   where?: InputMaybe<Users_Bool_Exp>;
+};
+
+/** Boolean expression to compare columns of type "timestamp". All fields are combined with logical 'AND'. */
+export type Timestamp_Comparison_Exp = {
+  _eq?: InputMaybe<Scalars['timestamp']>;
+  _gt?: InputMaybe<Scalars['timestamp']>;
+  _gte?: InputMaybe<Scalars['timestamp']>;
+  _in?: InputMaybe<Array<Scalars['timestamp']>>;
+  _is_null?: InputMaybe<Scalars['Boolean']>;
+  _lt?: InputMaybe<Scalars['timestamp']>;
+  _lte?: InputMaybe<Scalars['timestamp']>;
+  _neq?: InputMaybe<Scalars['timestamp']>;
+  _nin?: InputMaybe<Array<Scalars['timestamp']>>;
 };
 
 /** Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'. */
@@ -3164,6 +3956,156 @@ export type Timestamptz_Comparison_Exp = {
   _neq?: InputMaybe<Scalars['timestamptz']>;
   _nin?: InputMaybe<Array<Scalars['timestamptz']>>;
 };
+
+/** columns and relationships of "user_project" */
+export type User_Project = {
+  __typename?: 'user_project';
+  /** An object relationship */
+  project: Projects;
+  project_id: Scalars['uuid'];
+  /** An object relationship */
+  user: Users;
+  user_id: Scalars['uuid'];
+};
+
+/** aggregated selection of "user_project" */
+export type User_Project_Aggregate = {
+  __typename?: 'user_project_aggregate';
+  aggregate?: Maybe<User_Project_Aggregate_Fields>;
+  nodes: Array<User_Project>;
+};
+
+/** aggregate fields of "user_project" */
+export type User_Project_Aggregate_Fields = {
+  __typename?: 'user_project_aggregate_fields';
+  count: Scalars['Int'];
+  max?: Maybe<User_Project_Max_Fields>;
+  min?: Maybe<User_Project_Min_Fields>;
+};
+
+
+/** aggregate fields of "user_project" */
+export type User_Project_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<User_Project_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "user_project" */
+export type User_Project_Aggregate_Order_By = {
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<User_Project_Max_Order_By>;
+  min?: InputMaybe<User_Project_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "user_project" */
+export type User_Project_Arr_Rel_Insert_Input = {
+  data: Array<User_Project_Insert_Input>;
+  /** upsert condition */
+  on_conflict?: InputMaybe<User_Project_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "user_project". All fields are combined with a logical 'AND'. */
+export type User_Project_Bool_Exp = {
+  _and?: InputMaybe<Array<User_Project_Bool_Exp>>;
+  _not?: InputMaybe<User_Project_Bool_Exp>;
+  _or?: InputMaybe<Array<User_Project_Bool_Exp>>;
+  project?: InputMaybe<Projects_Bool_Exp>;
+  project_id?: InputMaybe<Uuid_Comparison_Exp>;
+  user?: InputMaybe<Users_Bool_Exp>;
+  user_id?: InputMaybe<Uuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "user_project" */
+export enum User_Project_Constraint {
+  /** unique or primary key constraint */
+  UserProjectPkey = 'user_project_pkey'
+}
+
+/** input type for inserting data into table "user_project" */
+export type User_Project_Insert_Input = {
+  project?: InputMaybe<Projects_Obj_Rel_Insert_Input>;
+  project_id?: InputMaybe<Scalars['uuid']>;
+  user?: InputMaybe<Users_Obj_Rel_Insert_Input>;
+  user_id?: InputMaybe<Scalars['uuid']>;
+};
+
+/** aggregate max on columns */
+export type User_Project_Max_Fields = {
+  __typename?: 'user_project_max_fields';
+  project_id?: Maybe<Scalars['uuid']>;
+  user_id?: Maybe<Scalars['uuid']>;
+};
+
+/** order by max() on columns of table "user_project" */
+export type User_Project_Max_Order_By = {
+  project_id?: InputMaybe<Order_By>;
+  user_id?: InputMaybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type User_Project_Min_Fields = {
+  __typename?: 'user_project_min_fields';
+  project_id?: Maybe<Scalars['uuid']>;
+  user_id?: Maybe<Scalars['uuid']>;
+};
+
+/** order by min() on columns of table "user_project" */
+export type User_Project_Min_Order_By = {
+  project_id?: InputMaybe<Order_By>;
+  user_id?: InputMaybe<Order_By>;
+};
+
+/** response of any mutation on the table "user_project" */
+export type User_Project_Mutation_Response = {
+  __typename?: 'user_project_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<User_Project>;
+};
+
+/** on_conflict condition type for table "user_project" */
+export type User_Project_On_Conflict = {
+  constraint: User_Project_Constraint;
+  update_columns?: Array<User_Project_Update_Column>;
+  where?: InputMaybe<User_Project_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "user_project". */
+export type User_Project_Order_By = {
+  project?: InputMaybe<Projects_Order_By>;
+  project_id?: InputMaybe<Order_By>;
+  user?: InputMaybe<Users_Order_By>;
+  user_id?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: user_project */
+export type User_Project_Pk_Columns_Input = {
+  project_id: Scalars['uuid'];
+  user_id: Scalars['uuid'];
+};
+
+/** select columns of table "user_project" */
+export enum User_Project_Select_Column {
+  /** column name */
+  ProjectId = 'project_id',
+  /** column name */
+  UserId = 'user_id'
+}
+
+/** input type for updating data in table "user_project" */
+export type User_Project_Set_Input = {
+  project_id?: InputMaybe<Scalars['uuid']>;
+  user_id?: InputMaybe<Scalars['uuid']>;
+};
+
+/** update columns of table "user_project" */
+export enum User_Project_Update_Column {
+  /** column name */
+  ProjectId = 'project_id',
+  /** column name */
+  UserId = 'user_id'
+}
 
 /** columns and relationships of "auth.users" */
 export type Users = {
@@ -3182,6 +4124,7 @@ export type Users = {
   isAnonymous: Scalars['Boolean'];
   lastSeen?: Maybe<Scalars['timestamptz']>;
   locale: Scalars['String'];
+  metadata?: Maybe<Scalars['jsonb']>;
   newEmail?: Maybe<Scalars['citext']>;
   otpHash?: Maybe<Scalars['String']>;
   otpHashExpiresAt: Scalars['timestamptz'];
@@ -3205,6 +4148,16 @@ export type Users = {
   userProviders: Array<AuthUserProviders>;
   /** An aggregate relationship */
   userProviders_aggregate: AuthUserProviders_Aggregate;
+  /** An array relationship */
+  user_projects: Array<User_Project>;
+  /** An aggregate relationship */
+  user_projects_aggregate: User_Project_Aggregate;
+};
+
+
+/** columns and relationships of "auth.users" */
+export type UsersMetadataArgs = {
+  path?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -3267,6 +4220,26 @@ export type UsersUserProviders_AggregateArgs = {
   where?: InputMaybe<AuthUserProviders_Bool_Exp>;
 };
 
+
+/** columns and relationships of "auth.users" */
+export type UsersUser_ProjectsArgs = {
+  distinct_on?: InputMaybe<Array<User_Project_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<User_Project_Order_By>>;
+  where?: InputMaybe<User_Project_Bool_Exp>;
+};
+
+
+/** columns and relationships of "auth.users" */
+export type UsersUser_Projects_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<User_Project_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<User_Project_Order_By>>;
+  where?: InputMaybe<User_Project_Bool_Exp>;
+};
+
 /** aggregated selection of "auth.users" */
 export type Users_Aggregate = {
   __typename?: 'users_aggregate';
@@ -3296,10 +4269,15 @@ export type Users_Aggregate_Order_By = {
   min?: InputMaybe<Users_Min_Order_By>;
 };
 
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type Users_Append_Input = {
+  metadata?: InputMaybe<Scalars['jsonb']>;
+};
+
 /** input type for inserting array relation for remote table "auth.users" */
 export type Users_Arr_Rel_Insert_Input = {
   data: Array<Users_Insert_Input>;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Users_On_Conflict>;
 };
 
@@ -3321,6 +4299,7 @@ export type Users_Bool_Exp = {
   isAnonymous?: InputMaybe<Boolean_Comparison_Exp>;
   lastSeen?: InputMaybe<Timestamptz_Comparison_Exp>;
   locale?: InputMaybe<String_Comparison_Exp>;
+  metadata?: InputMaybe<Jsonb_Comparison_Exp>;
   newEmail?: InputMaybe<Citext_Comparison_Exp>;
   otpHash?: InputMaybe<String_Comparison_Exp>;
   otpHashExpiresAt?: InputMaybe<Timestamptz_Comparison_Exp>;
@@ -3335,6 +4314,7 @@ export type Users_Bool_Exp = {
   totpSecret?: InputMaybe<String_Comparison_Exp>;
   updatedAt?: InputMaybe<Timestamptz_Comparison_Exp>;
   userProviders?: InputMaybe<AuthUserProviders_Bool_Exp>;
+  user_projects?: InputMaybe<User_Project_Bool_Exp>;
 };
 
 /** unique or primary key constraints on table "auth.users" */
@@ -3346,6 +4326,21 @@ export enum Users_Constraint {
   /** unique or primary key constraint */
   UsersPkey = 'users_pkey'
 }
+
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type Users_Delete_At_Path_Input = {
+  metadata?: InputMaybe<Array<Scalars['String']>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type Users_Delete_Elem_Input = {
+  metadata?: InputMaybe<Scalars['Int']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type Users_Delete_Key_Input = {
+  metadata?: InputMaybe<Scalars['String']>;
+};
 
 /** input type for inserting data into table "auth.users" */
 export type Users_Insert_Input = {
@@ -3362,6 +4357,7 @@ export type Users_Insert_Input = {
   isAnonymous?: InputMaybe<Scalars['Boolean']>;
   lastSeen?: InputMaybe<Scalars['timestamptz']>;
   locale?: InputMaybe<Scalars['String']>;
+  metadata?: InputMaybe<Scalars['jsonb']>;
   newEmail?: InputMaybe<Scalars['citext']>;
   otpHash?: InputMaybe<Scalars['String']>;
   otpHashExpiresAt?: InputMaybe<Scalars['timestamptz']>;
@@ -3376,6 +4372,7 @@ export type Users_Insert_Input = {
   totpSecret?: InputMaybe<Scalars['String']>;
   updatedAt?: InputMaybe<Scalars['timestamptz']>;
   userProviders?: InputMaybe<AuthUserProviders_Arr_Rel_Insert_Input>;
+  user_projects?: InputMaybe<User_Project_Arr_Rel_Insert_Input>;
 };
 
 /** aggregate max on columns */
@@ -3484,11 +4481,11 @@ export type Users_Mutation_Response = {
 /** input type for inserting object relation for remote table "auth.users" */
 export type Users_Obj_Rel_Insert_Input = {
   data: Users_Insert_Input;
-  /** on conflict condition */
+  /** upsert condition */
   on_conflict?: InputMaybe<Users_On_Conflict>;
 };
 
-/** on conflict condition type for table "auth.users" */
+/** on_conflict condition type for table "auth.users" */
 export type Users_On_Conflict = {
   constraint: Users_Constraint;
   update_columns?: Array<Users_Update_Column>;
@@ -3510,6 +4507,7 @@ export type Users_Order_By = {
   isAnonymous?: InputMaybe<Order_By>;
   lastSeen?: InputMaybe<Order_By>;
   locale?: InputMaybe<Order_By>;
+  metadata?: InputMaybe<Order_By>;
   newEmail?: InputMaybe<Order_By>;
   otpHash?: InputMaybe<Order_By>;
   otpHashExpiresAt?: InputMaybe<Order_By>;
@@ -3524,11 +4522,17 @@ export type Users_Order_By = {
   totpSecret?: InputMaybe<Order_By>;
   updatedAt?: InputMaybe<Order_By>;
   userProviders_aggregate?: InputMaybe<AuthUserProviders_Aggregate_Order_By>;
+  user_projects_aggregate?: InputMaybe<User_Project_Aggregate_Order_By>;
 };
 
 /** primary key columns input for table: users */
 export type Users_Pk_Columns_Input = {
   id: Scalars['uuid'];
+};
+
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type Users_Prepend_Input = {
+  metadata?: InputMaybe<Scalars['jsonb']>;
 };
 
 /** select columns of table "auth.users" */
@@ -3557,6 +4561,8 @@ export enum Users_Select_Column {
   LastSeen = 'lastSeen',
   /** column name */
   Locale = 'locale',
+  /** column name */
+  Metadata = 'metadata',
   /** column name */
   NewEmail = 'newEmail',
   /** column name */
@@ -3595,6 +4601,7 @@ export type Users_Set_Input = {
   isAnonymous?: InputMaybe<Scalars['Boolean']>;
   lastSeen?: InputMaybe<Scalars['timestamptz']>;
   locale?: InputMaybe<Scalars['String']>;
+  metadata?: InputMaybe<Scalars['jsonb']>;
   newEmail?: InputMaybe<Scalars['citext']>;
   otpHash?: InputMaybe<Scalars['String']>;
   otpHashExpiresAt?: InputMaybe<Scalars['timestamptz']>;
@@ -3634,6 +4641,8 @@ export enum Users_Update_Column {
   LastSeen = 'lastSeen',
   /** column name */
   Locale = 'locale',
+  /** column name */
+  Metadata = 'metadata',
   /** column name */
   NewEmail = 'newEmail',
   /** column name */
@@ -3676,14 +4685,14 @@ export type GetBunkersQueryVariables = Exact<{
 }>;
 
 
-export type GetBunkersQuery = { __typename?: 'query_root', bunkers: Array<{ __typename?: 'bunkers', coordinates?: any | null, address?: string | null, city?: string | null, district?: string | null, lat: any, lng: any, id: number }> };
+export type GetBunkersQuery = { __typename?: 'query_root', bunkers: Array<{ __typename?: 'bunkers', address?: string | null, city?: string | null, district?: string | null, lat: any, lng: any, id: number }> };
 
 export type GetBunkerQueryVariables = Exact<{
   bunker: Scalars['Int'];
 }>;
 
 
-export type GetBunkerQuery = { __typename?: 'query_root', bunkers_by_pk?: { __typename?: 'bunkers', coordinates?: any | null, address?: string | null, city?: string | null, district?: string | null, id: number } | null };
+export type GetBunkerQuery = { __typename?: 'query_root', bunkers_by_pk?: { __typename?: 'bunkers', address?: string | null, city?: string | null, district?: string | null, lat: any, lng: any, id: number } | null };
 
 export type GetFiltersQueryVariables = Exact<{
   where: Bunkers_Bool_Exp;
@@ -3696,7 +4705,6 @@ export type GetFiltersQuery = { __typename?: 'query_root', districts: Array<{ __
 export const GetBunkersDocument = gql`
     query getBunkers($where: bunkers_bool_exp!) {
   bunkers(where: $where) {
-    coordinates
     address
     city
     district
@@ -3740,10 +4748,11 @@ export function refetchGetBunkersQuery(variables: GetBunkersQueryVariables) {
 export const GetBunkerDocument = gql`
     query getBunker($bunker: Int!) {
   bunkers_by_pk(id: $bunker) {
-    coordinates
     address
     city
     district
+    lat
+    lng
     id
   }
 }

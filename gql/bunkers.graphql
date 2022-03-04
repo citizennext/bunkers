@@ -1,6 +1,5 @@
 query getBunkers($where: bunkers_bool_exp!) {
   bunkers(where: $where) {
-    coordinates
     address
     city
     district
@@ -12,10 +11,11 @@ query getBunkers($where: bunkers_bool_exp!) {
 
 query getBunker($bunker: Int!) {
   bunkers_by_pk(id: $bunker) {
-    coordinates
     address
     city
     district
+    lat
+    lng
     id
   }
 }

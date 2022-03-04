@@ -46,11 +46,8 @@ export function Filter(props: Props) {
   cities?.unshift({ value: null, district: null, label: 'Toate orașele' })
 
   function handleChangeDistrict(newValue: any) {
-    if (newValue.value === null) {
-      props.onFilterChange({ district: newValue.value, city: null })
-    } else {
-      props.onFilterChange({ district: newValue.value })
-    }
+    props.onFilterChange({ district: newValue.value, city: null })
+
     setSelectedDistrict(newValue.value)
   }
   function handleChangeCity(newValue: any) {
