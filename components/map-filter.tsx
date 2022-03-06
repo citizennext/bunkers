@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Select from 'react-select'
 import Drawer from 'components/drawer'
 import { Spinner } from 'components/spinner'
-
+import roDistricts from '../public/data/ro-coordinates.json'
 import { useWindowSize } from 'components/hooks/useWindowSize'
 import { FilterMenu } from 'components/icons'
 
@@ -36,7 +36,7 @@ export function Filter(props: Props) {
   const { cities: citiesData, districts: districtsData } = data
 
   const districts = districtsData?.map((item: { district?: string | null }) => {
-    return { value: item.district, label: item.district }
+    return { value: item.district, label: roDistricts.find((i: any) => i.iso2 === item.district)?.admin }
   })
   districts?.unshift({ value: null, label: 'Toate județele' })
 
