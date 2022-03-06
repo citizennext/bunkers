@@ -9,6 +9,7 @@ import { Dialog } from '@reach/dialog'
 import { Spinner } from 'components/spinner'
 import { ZoomSetter } from 'components/zoom-setter'
 import { Filter } from 'components/map-filter'
+import { Information } from 'components/info'
 import type { FilterObject } from 'components/map-filter'
 
 import ROCoordinates from 'public/data/ro-coordinates.json'
@@ -106,7 +107,7 @@ function Map() {
         center={position}
         zoom={zoom}
         maxZoom={20}
-        zoomControl={true}
+        zoomControl={false}
         scrollWheelZoom={scrollWheelZoom}
         className='markercluster-map'>
         <TileLayer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' />
@@ -129,6 +130,7 @@ function Map() {
         <ZoomControl position='bottomright' />
       </MapContainer>
       <Filter drawer={true} filters={filters} totalResults={totalResults} onFilterChange={handleFilterChange} />
+      <Information />
       <Transition.Root show={!!selectedBunkerId} as={Fragment}>
         <Dialog
           aria-label='detalii adapost'
