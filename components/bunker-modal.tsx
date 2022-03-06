@@ -1,6 +1,6 @@
 import { Spinner } from 'components/spinner'
 import { useGetBunkerQuery } from 'utils/__generated__/graphql'
-import { Directions, Leaf, Close } from 'components/icons'
+import { Directions, Shelter, Close } from 'components/icons'
 import Image from 'next/image'
 
 export function BunkerModal(props: any) {
@@ -16,7 +16,7 @@ export function BunkerModal(props: any) {
   return (
     <section className='fixed bottom-0 md:left-0 max-h-[75vh] max-w-[375px] text-left'>
       <header className='min-h-[130px] px-6 py-5 rounded-t-lg bg-celeste border-b-6 border-leaf'>
-        <Leaf width={60} height={88} />
+        <Shelter color='#CEE6C1' size={80} />
 
         <button className='bg-snow rounded-full absolute cursor-pointer p-4 top-5 right-5' onClick={() => props.closeModal()}>
           <span className='sr-only'>close modal</span>

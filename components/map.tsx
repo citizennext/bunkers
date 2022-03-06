@@ -1,6 +1,5 @@
-import { useEffect, useState, Fragment, createRef, useRef } from 'react'
+import { useEffect, useState, Fragment } from 'react'
 import { Bunkers, useGetBunkersQuery } from '../utils/__generated__/graphql'
-import { Transition } from '@headlessui/react'
 import { useRouter } from 'next/router'
 import Leaflet, { LatLngTuple } from 'leaflet'
 import { MapContainer, Marker, TileLayer, Tooltip, ZoomControl } from 'react-leaflet'
@@ -9,7 +8,7 @@ import { Dialog } from '@reach/dialog'
 import { Spinner } from 'components/spinner'
 import { ZoomSetter } from 'components/zoom-setter'
 import { Filter } from 'components/map-filter'
-import { Information } from 'components/info'
+import { Information, SourceModal } from 'components/info'
 import type { FilterObject } from 'components/map-filter'
 
 import ROCoordinates from 'public/data/ro-coordinates.json'
@@ -48,7 +47,21 @@ function Map() {
   const [lng, setLng] = useState(25.091419)
   const [zoom, setZoom] = useState(7)
   const [scrollWheelZoom, setScrollWheelZoom] = useState(true)
-
+  const [show, setShow] = useState(false)
+  useEffect(() => {
+    if (localStorage.getItem('sourceRead') === null || localStorage.getItem('sourceRead') === '0') {
+      setShow(true)
+    }
+  }, [])
+  function toggleModal() {
+    if (show) {
+      localStorage.setItem('sourceRead', '1')
+      setShow(false)
+    } else {
+      localStorage.setItem('sourceRead', '0')
+      setShow(true)
+    }
+  }
   const [filters, setFilters] = useQueryState({
     district: null,
     city: null,
@@ -130,18 +143,22 @@ function Map() {
         <ZoomControl position='bottomright' />
       </MapContainer>
       <Filter drawer={true} filters={filters} totalResults={totalResults} onFilterChange={handleFilterChange} />
-      <Information />
-      <Transition.Root show={!!selectedBunkerId} as={Fragment}>
-        <Dialog
-          aria-label='detalii adapost'
-          isOpen={!!selectedBunkerId}
-          onDismiss={() => setSelectedBunkerId(0)}
-          className='fixed z-10 inset-0 overflow-y-auto'>
-          <div className='flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0'>
-            <BunkerModal id={selectedBunkerId} closeModal={() => setSelectedBunkerId(0)} />
-          </div>
-        </Dialog>
-      </Transition.Root>
+      <Information toggleModal={toggleModal} />
+      <Dialog
+        aria-label='detalii adapost'
+        isOpen={!!selectedBunkerId}
+        onDismiss={() => setSelectedBunkerId(0)}
+        className='fixed z-10 inset-0 overflow-y-auto'>
+        <div className='flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0'>
+          <BunkerModal id={selectedBunkerId} closeModal={() => setSelectedBunkerId(0)} />
+        </div>
+      </Dialog>
+
+      <Dialog aria-label='sursa datelor' isOpen={show} onDismiss={toggleModal} className='fixed z-10 inset-0 overflow-y-auto'>
+        <div className='flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0'>
+          <SourceModal toggleModal={toggleModal} />
+        </div>
+      </Dialog>
     </>
   )
 }
