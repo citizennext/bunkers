@@ -7,7 +7,8 @@ import { NhostApolloProvider } from '@nhost/react-apollo'
 import Script from 'next/script'
 import { nhost } from '../utils/nhost'
 import * as gtag from '../utils/gtag'
-
+import { DefaultSeo } from 'next-seo'
+import SEO from '../next-seo.config'
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
   useEffect(() => {
@@ -37,6 +38,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           `,
           }}
         />
+        <DefaultSeo {...SEO} />
         <Component {...pageProps} />
       </NhostApolloProvider>
     </NhostAuthProvider>
